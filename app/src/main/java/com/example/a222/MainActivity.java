@@ -1,7 +1,7 @@
 package com.example.a222;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,19 +16,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     ListView gamersListView;
+    Button startGame;
     Button add2;
     EditText newUser;
     MyListAdapter myListAdapter;
 
-    ListOfGamers gamersArray = new ListOfGamers();
-    ArrayAdapter adapter;
-    //MyAdapter adapter;
-
+    final ArrayList<String> gamersArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.menu_main);
 
         gamersListView = (ListView) findViewById(R.id.gamers);
-        myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray.getNames());
+        myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray);
         gamersListView.setAdapter(myListAdapter);
         newUser = (EditText) findViewById(R.id.newUser);
+        startGame = (Button) findViewById(R.id.startGame);
+
+        startGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,GamezoneActivity.class);
+                startActivity(intent);
+            }
+        });
 
         add2 = (Button) findViewById(R.id.add2);
         add2.setOnClickListener(new View.OnClickListener() {
@@ -46,27 +55,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String inputString = newUser.getText().toString();
                 if (!inputString.equals("")) {
-                    gamersArray.add(newUser.getText().toString());
+                    gamersArray.add(inputString);
                     myListAdapter.notifyDataSetChanged();
                     newUser.setText("");
                 }
 
-                if (gamersArray.size() == 8) {
-                    newUser.setEnabled(false);
-                    add2.setEnabled(false);
-                    MakeToast();
-                }
+                setEnterItemVisible();
             }
         });
     }
 
+
     private class MyListAdapter extends ArrayAdapter<String> {
         private int layout;
-        private ArrayList<String> mObjects;
 
         private MyListAdapter(Context context, int resource, ArrayList<String> objects) {
             super(context, resource, objects);
-            mObjects = objects;
             layout = resource;
         }
 
@@ -75,59 +79,45 @@ public class MainActivity extends AppCompatActivity {
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder mainViewholder = null;
             if (convertView == null) {
-                for (String s : gamersArray.getNames()) {
-                    LayoutInflater inflater = LayoutInflater.from(getContext());
-                    convertView = inflater.inflate(layout, parent, false);
-                    TextView title = (TextView) convertView.findViewById(R.id.title);
-                    ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.DeleteUser);
-                    deleteButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            gamersArray.remove(position);
-                            ArrayList temp = (ArrayList) gamersArray.getNames().clone();
-                            gamersArray.getNames().clear();
-                            gamersArray.getNames().addAll(temp);
-                            notifyDataSetChanged();
-                        }
-                    });
-                    title.setText(s);
-                    ViewHolder viewHolder = new ViewHolder();
-                    viewHolder.title = title;
-                    viewHolder.button = deleteButton;
-                    convertView.setTag(viewHolder);
-                }
-                /*mainViewholder = (ViewHolder) convertView.getTag();
-                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+                ViewHolder viewholder = new ViewHolder();
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(layout, parent, false);
+                viewholder.title = (TextView) convertView.findViewById(R.id.title);
+                viewholder.button = (ImageButton) convertView.findViewById(R.id.DeleteUser);
+                viewholder.title.setText(getItem(position));
+                viewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         gamersArray.remove(position);
-                        ArrayList temp = (ArrayList) gamersArray.getNames().clone();
-                        gamersArray.getNames().clear();
-                        gamersArray.getNames().addAll(temp);
-
-
-                        //gamersListView.setAdapter(myListAdapter);
-                        // myListAdapter.remove(gamersArray.getNames(position));
-                        //myListAdapter.remove(myListAdapter.getItem(position).toString());
-                        notifyDataSetChanged();
-
+                        myListAdapter.notifyDataSetChanged();
+                        setEnterItemVisible();
                     }
-                });*/
+                });
 
+                convertView.setTag(viewholder);
+
+            } else {
+                mainViewholder = (ViewHolder) convertView.getTag();
+                mainViewholder.title.setText(getItem(position));
             }
             return convertView;
+
         }
+    }
+
+    private void setEnterItemVisible() {
+        boolean check = true;
+        if (gamersArray.size() >= 8) {
+            check = false;
+        }
+        newUser.setEnabled(check);
+        add2.setEnabled(check);
     }
 
     public class ViewHolder {
 
-        ImageView thumbnail;
         TextView title;
         ImageButton button;
     }
 
-    public void MakeToast() {
-        Toast toast = Toast.makeText(this, "Введено макскимальное количество игроков", Toast.LENGTH_SHORT);
-        toast.show();
-    }
 }

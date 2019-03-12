@@ -29,7 +29,7 @@ public class ListOfGamers {
         names.remove(position);
     }
 
-    public String getNames(int position) {
-        return names.get(position-1);
+    public String getOneName(int position) {
+        return names.get(position);
     }
 }

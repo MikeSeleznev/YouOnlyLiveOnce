@@ -113,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/start3"
+        android:id="@+id/startGame"
         android:layout_width="292dp"
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
