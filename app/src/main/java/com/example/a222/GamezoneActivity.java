@@ -17,6 +17,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GamezoneActivity extends AppCompatActivity {
@@ -51,8 +52,9 @@ public class GamezoneActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-
-
+        ArrayList<String> gamersArray = (ArrayList<String>) intent.getSerializableExtra("gamers");
+        setVisibleGamers(gamersArray.size());
+        String a = "a";
         bottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +78,8 @@ public class GamezoneActivity extends AppCompatActivity {
                         //new_dir = (int) last_dir_copy - 70;
                         float cyrcles = (last_dir_copy % 360 / 45);
                         cyrcles = (float) Math.round(cyrcles);
-                        if (cyrcles < 1) { paintGamer(lastPaintedUser);
+                        if (cyrcles < 1) {
+                            paintGamer(lastPaintedUser);
                         } else if (cyrcles == 1) {
                             paintGamer(user1);
                         } else if (cyrcles == 2) {
@@ -106,6 +109,65 @@ public class GamezoneActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setVisibleGamers(int size) {
+
+        if (size == 2) {
+            //user1.setVisibility(View.GONE);
+            user2.setVisibility(View.GONE);
+            user3.setVisibility(View.GONE);
+            user4.setVisibility(View.GONE);
+            //user5.setVisibility(View.GONE);
+            user6.setVisibility(View.GONE);
+            user7.setVisibility(View.GONE);
+            user8.setVisibility(View.GONE);
+        } else if (size == 3) {
+            //user1.setVisibility(View.GONE);
+            user2.setVisibility(View.GONE);
+           // user3.setVisibility(View.GONE);
+            user4.setVisibility(View.GONE);
+            user5.setVisibility(View.GONE);
+           // user6.setVisibility(View.GONE);
+            user7.setVisibility(View.GONE);
+            user8.setVisibility(View.GONE);
+        } else if (size == 4) {
+            user1.setVisibility(View.GONE);
+            //user2.setVisibility(View.GONE);
+            user3.setVisibility(View.GONE);
+            //user4.setVisibility(View.GONE);
+            user5.setVisibility(View.GONE);
+            //user6.setVisibility(View.GONE);
+            user7.setVisibility(View.GONE);
+            //user8.setVisibility(View.GONE);
+        } else if (size == 5) {
+            user1.setVisibility(View.GONE);
+            user2.setVisibility(View.GONE);
+            user3.setVisibility(View.GONE);
+            user4.setVisibility(View.GONE);
+            user5.setVisibility(View.GONE);
+            //user6.setVisibility(View.GONE);
+            //user7.setVisibility(View.GONE);
+            //user8.setVisibility(View.GONE);
+        } else if (size == 6) {
+            user1.setVisibility(View.GONE);
+            user2.setVisibility(View.GONE);
+            user3.setVisibility(View.GONE);
+            user4.setVisibility(View.GONE);
+            user5.setVisibility(View.GONE);
+            user6.setVisibility(View.GONE);
+            //user7.setVisibility(View.GONE);
+            //user8.setVisibility(View.GONE);
+        } else if (size == 7) {
+            user1.setVisibility(View.GONE);
+            user2.setVisibility(View.GONE);
+            user3.setVisibility(View.GONE);
+            user4.setVisibility(View.GONE);
+            user5.setVisibility(View.GONE);
+            user6.setVisibility(View.GONE);
+            user7.setVisibility(View.GONE);
+           // user8.setVisibility(View.GONE);
+        }
     }
 
     private void paintGamer(Button user) {
