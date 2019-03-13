@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,GamezoneActivity.class);
+                intent.putExtra("gamers", gamersArray);
                 startActivity(intent);
             }
         });
