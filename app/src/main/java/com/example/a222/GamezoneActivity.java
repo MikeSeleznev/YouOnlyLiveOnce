@@ -1,15 +1,10 @@
 package com.example.a222;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,7 +18,6 @@ import java.util.Random;
 public class GamezoneActivity extends AppCompatActivity {
 
     private ImageView bottle;
-    private Random random = new Random();
     private float last_dir = 0f;
     private int new_dir;
     private Button user1;
@@ -34,27 +28,68 @@ public class GamezoneActivity extends AppCompatActivity {
     private Button user6;
     private Button user7;
     private Button user8;
-    private Button lastPaintedUser;
+    private int numberOfPlayers;
+    private int selectedUser = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamezone);
-        bottle = findViewById(R.id.bottle);
-        user1 = findViewById(R.id.user1);
-        user2 = findViewById(R.id.user2);
-        user3 = findViewById(R.id.user3);
-        user4 = findViewById(R.id.user4);
-        user5 = findViewById(R.id.user5);
-        user6 = findViewById(R.id.user6);
-        user7 = findViewById(R.id.user7);
-        user8 = findViewById(R.id.user8);
-
-
         Intent intent = getIntent();
-        ArrayList<String> gamersArray = (ArrayList<String>) intent.getSerializableExtra("gamers");
-        setVisibleGamers(gamersArray.size());
-        String a = "a";
+        final ArrayList<String> gamersArray = (ArrayList<String>) intent.getSerializableExtra("gamers");
+        numberOfPlayers = gamersArray.size();
+        if (numberOfPlayers == 2){
+            setContentView(R.layout.gamezone_two);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+        } else if(numberOfPlayers == 3){
+            setContentView(R.layout.gamezone_three);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+        }else if(numberOfPlayers == 4){
+            setContentView(R.layout.gamezone_four);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+            user4 = findViewById(R.id.user4);}
+        else if(numberOfPlayers == 5){
+            setContentView(R.layout.gamezone_five);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+            user4 = findViewById(R.id.user4);
+            user5 = findViewById(R.id.user5);}
+        else if(numberOfPlayers == 6){
+            setContentView(R.layout.gamezone_six);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+            user4 = findViewById(R.id.user4);
+            user5 = findViewById(R.id.user5);
+            user6 = findViewById(R.id.user6);}
+        else if(numberOfPlayers == 7){
+            setContentView(R.layout.gamezone_seven);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+            user4 = findViewById(R.id.user4);
+            user5 = findViewById(R.id.user5);
+            user6 = findViewById(R.id.user6);
+            user7 = findViewById(R.id.user7);}
+        else{
+            setContentView(R.layout.gamezone_eight);
+            user1 = findViewById(R.id.user1);
+            user2 = findViewById(R.id.user2);
+            user3 = findViewById(R.id.user3);
+            user4 = findViewById(R.id.user4);
+            user5 = findViewById(R.id.user5);
+            user6 = findViewById(R.id.user6);
+            user7 = findViewById(R.id.user7);
+            user8 = findViewById(R.id.user8);}
+
+        bottle = findViewById(R.id.bottle);
+
+        setVisibleGamers(gamersArray);
         bottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +98,7 @@ public class GamezoneActivity extends AppCompatActivity {
                 new_dir = random.nextInt(2160) + (int) last_dir;
                 float pointWidth = bottle.getWidth() / 2;
                 float pointHeight = bottle.getHeight() / 2;
-                Animation rotation = new RotateAnimation(last_dir, new_dir, pointWidth, pointHeight);
+                final Animation rotation = new RotateAnimation(last_dir, new_dir, pointWidth, pointHeight);
                 rotation.setDuration(2700);
                 rotation.setFillAfter(true);
                 rotation.setAnimationListener(new Animation.AnimationListener() {
@@ -74,30 +109,65 @@ public class GamezoneActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        float last_dir_copy = last_dir + 80;
-                        //new_dir = (int) last_dir_copy - 70;
-                        float cyrcles = (last_dir_copy % 360 / 45);
-                        cyrcles = (float) Math.round(cyrcles);
-                        if (cyrcles < 1) {
-                            paintGamer(lastPaintedUser);
-                        } else if (cyrcles == 1) {
-                            paintGamer(user1);
-                        } else if (cyrcles == 2) {
-                            paintGamer(user2);
-                        } else if (cyrcles == 3) {
-                            paintGamer(user3);
-                        } else if (cyrcles == 4) {
-                            paintGamer(user4);
-                        } else if (cyrcles == 5) {
-                            paintGamer(user5);
-                        } else if (cyrcles == 6) {
-                            paintGamer(user6);
-                        } else if (cyrcles == 7) {
-                            paintGamer(user7);
-                        } else if (cyrcles == 8) {
-                            paintGamer(user8);
+                        float last_dir_copy = last_dir;
+                        float degree = last_dir_copy % 360;
+                        if (numberOfPlayers == 2){
+                            if (degree > 0 && degree <= 70){paintGamer(user1, 1);}
+                            if (degree > 70 && degree <= 250){paintGamer(user2, 2);}
+                            if (degree > 250){paintGamer(user1, 1);}
+
+                        } else if(numberOfPlayers == 3){
+                            if (degree > 0 && degree <= 30){paintGamer(user1,1);}
+                            if (degree > 30 && degree <= 160){paintGamer(user2,2);}
+                            if (degree > 160 && degree <= 295){paintGamer(user3,3);}
+                            if (degree > 295 ){paintGamer(user1,1);}
+
+                        } else if(numberOfPlayers == 4){
+                            if (degree > 0 && degree <= 30){paintGamer(user1,1);}
+                            if (degree > 30 && degree <= 125){paintGamer(user2,2);}
+                            if (degree > 125 && degree <= 215){paintGamer(user3,3);}
+                            if (degree > 215 && degree <= 305){paintGamer(user4,4);}
+                            if (degree > 305 ){paintGamer(user1,1);}
+                        } else if(numberOfPlayers == 5){
+                            if (degree > 0 && degree <= 21){paintGamer(user1,1);}
+                            if (degree > 21 && degree <= 93){paintGamer(user2,2);}
+                            if (degree > 93 && degree <= 165){paintGamer(user3,3);}
+                            if (degree > 165 && degree <= 248){paintGamer(user4,4);}
+                            if (degree > 248 && degree <= 325){paintGamer(user5,5);}
+                            if (degree > 325 ){paintGamer(user1, 1);}
+                        } else if(numberOfPlayers == 6){
+                            if (degree > 0 && degree <= 15){paintGamer(user1, 1);}
+                            if (degree > 15 && degree <= 75){paintGamer(user2, 2);}
+                            if (degree > 75 && degree <= 135){paintGamer(user3, 3);}
+                            if (degree > 135 && degree <= 195){paintGamer(user4, 4);}
+                            if (degree > 195 && degree <= 255){paintGamer(user5,5);}
+                            if (degree > 255 && degree <= 315){paintGamer(user6, 6);}
+                            if (degree > 315 ){paintGamer(user1,  1);}
+                        } else if(numberOfPlayers == 7){
+                            if (degree > 0 && degree <= 10){paintGamer(user1,1);}
+                            if (degree > 10 && degree <= 61){paintGamer(user2,2);}
+                            if (degree > 61 && degree <= 112){paintGamer(user3,3);}
+                            if (degree > 112 && degree <= 163){paintGamer(user4,4);}
+                            if (degree > 163 && degree <= 214){paintGamer(user5,5);}
+                            if (degree > 214 && degree <= 265){paintGamer(user6,6);}
+                            if (degree > 265 && degree <= 317){paintGamer(user7,7);}
+                            if (degree > 317 ){paintGamer(user1,1);}
+                        } else {
+                            if (degree > 0 && degree <= 12){paintGamer(user1,1);}
+                            if (degree > 12 && degree <= 57){paintGamer(user2,2);}
+                            if (degree > 57 && degree <= 102){paintGamer(user3,3);}
+                            if (degree > 102 && degree <= 147){paintGamer(user4,4);}
+                            if (degree > 147 && degree <= 192){paintGamer(user5,5);}
+                            if (degree > 192 && degree <= 237){paintGamer(user6,6);}
+                            if (degree > 237 && degree <= 282){paintGamer(user7,7);}
+                            if (degree > 282 && degree <= 327){paintGamer(user8,7);}
+                            if (degree > 327 ){paintGamer(user1,1);}
                         }
-                    }
+                        Intent intent = new Intent(GamezoneActivity.this,SelectActivity.class);
+                        intent.putExtra("user", gamersArray.get(selectedUser - 1));
+                        startActivity(intent);
+                        }
+
 
                     @Override
                     public void onAnimationRepeat(Animation animation) {
@@ -111,74 +181,183 @@ public class GamezoneActivity extends AppCompatActivity {
 
     }
 
-    private void setVisibleGamers(int size) {
+    private void setVisibleGamers( ArrayList<String> gamersArray) {
 
-        if (size == 2) {
-            //user1.setVisibility(View.GONE);
-            user2.setVisibility(View.GONE);
-            user3.setVisibility(View.GONE);
-            user4.setVisibility(View.GONE);
-            //user5.setVisibility(View.GONE);
-            user6.setVisibility(View.GONE);
-            user7.setVisibility(View.GONE);
-            user8.setVisibility(View.GONE);
-        } else if (size == 3) {
-            //user1.setVisibility(View.GONE);
-            user2.setVisibility(View.GONE);
-           // user3.setVisibility(View.GONE);
-            user4.setVisibility(View.GONE);
-            user5.setVisibility(View.GONE);
-           // user6.setVisibility(View.GONE);
-            user7.setVisibility(View.GONE);
-            user8.setVisibility(View.GONE);
-        } else if (size == 4) {
-            user1.setVisibility(View.GONE);
-            //user2.setVisibility(View.GONE);
-            user3.setVisibility(View.GONE);
-            //user4.setVisibility(View.GONE);
-            user5.setVisibility(View.GONE);
-            //user6.setVisibility(View.GONE);
-            user7.setVisibility(View.GONE);
-            //user8.setVisibility(View.GONE);
-        } else if (size == 5) {
-            user1.setVisibility(View.GONE);
-            user2.setVisibility(View.GONE);
-            user3.setVisibility(View.GONE);
-            user4.setVisibility(View.GONE);
-            user5.setVisibility(View.GONE);
-            //user6.setVisibility(View.GONE);
-            //user7.setVisibility(View.GONE);
-            //user8.setVisibility(View.GONE);
-        } else if (size == 6) {
-            user1.setVisibility(View.GONE);
-            user2.setVisibility(View.GONE);
-            user3.setVisibility(View.GONE);
-            user4.setVisibility(View.GONE);
-            user5.setVisibility(View.GONE);
-            user6.setVisibility(View.GONE);
-            //user7.setVisibility(View.GONE);
-            //user8.setVisibility(View.GONE);
-        } else if (size == 7) {
-            user1.setVisibility(View.GONE);
-            user2.setVisibility(View.GONE);
-            user3.setVisibility(View.GONE);
-            user4.setVisibility(View.GONE);
-            user5.setVisibility(View.GONE);
-            user6.setVisibility(View.GONE);
-            user7.setVisibility(View.GONE);
-           // user8.setVisibility(View.GONE);
+        if (numberOfPlayers == 2) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+        } else if (numberOfPlayers == 3) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+        } else if (numberOfPlayers == 4) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+            char[] name4 = gamersArray.get(3).toCharArray();
+            user4.setText(Character.toString(name4[0]));
+        } else if (numberOfPlayers == 5) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+            char[] name4 = gamersArray.get(3).toCharArray();
+            user4.setText(Character.toString(name4[0]));
+            char[] name5 = gamersArray.get(4).toCharArray();
+            user5.setText(Character.toString(name5[0]));
+        } else if (numberOfPlayers == 6) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+            char[] name4 = gamersArray.get(3).toCharArray();
+            user4.setText(Character.toString(name4[0]));
+            char[] name5 = gamersArray.get(4).toCharArray();
+            user5.setText(Character.toString(name5[0]));
+            char[] name6 = gamersArray.get(5).toCharArray();
+            user6.setText(Character.toString(name6[0]));
+        } else if (numberOfPlayers == 7) {
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+            char[] name4 = gamersArray.get(3).toCharArray();
+            user4.setText(Character.toString(name4[0]));
+            char[] name5 = gamersArray.get(4).toCharArray();
+            user5.setText(Character.toString(name5[0]));
+            char[] name6 = gamersArray.get(5).toCharArray();
+            user6.setText(Character.toString(name6[0]));
+            char[] name7 = gamersArray.get(6).toCharArray();
+            user7.setText(Character.toString(name7[0]));
+        } else{
+            char[] name1 = gamersArray.get(0).toCharArray();
+            user1.setText(Character.toString(name1[0]));
+            char[] name2 = gamersArray.get(1).toCharArray();
+            user2.setText(Character.toString(name2[0]));
+            char[] name3 = gamersArray.get(2).toCharArray();
+            user3.setText(Character.toString(name3[0]));
+            char[] name4 = gamersArray.get(3).toCharArray();
+            user4.setText(Character.toString(name4[0]));
+            char[] name5 = gamersArray.get(4).toCharArray();
+            user5.setText(Character.toString(name5[0]));
+            char[] name6 = gamersArray.get(5).toCharArray();
+            user6.setText(Character.toString(name6[0]));
+            char[] name7 = gamersArray.get(6).toCharArray();
+            user7.setText(Character.toString(name7[0]));
+            char[] name8 = gamersArray.get(7).toCharArray();
+            user8.setText(Character.toString(name8[0]));
         }
     }
 
-    private void paintGamer(Button user) {
+    private void paintGamer(Button user, int selectUser) {
+        if (!(user == null)){
         Drawable image = (Drawable) getResources().getDrawable(R.drawable.circleactive);
         user.setBackground(image);
         user.setTextColor(Color.WHITE);
-        lastPaintedUser = user;
+        }
+        selectedUser = selectUser;
     }
 
     private void setBackgroundColor() {
+
         Drawable image = (Drawable) getResources().getDrawable(R.drawable.circle);
+        if (numberOfPlayers == 2){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+        } else if(numberOfPlayers == 3){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+
+            user3.setBackground(image);
+            user3.setTextColor(Color.BLACK);
+        }else if(numberOfPlayers == 4){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+
+            user3.setBackground(image);
+            user3.setTextColor(Color.BLACK);
+
+            user4.setBackground(image);
+            user4.setTextColor(Color.BLACK);
+        }else if(numberOfPlayers == 5){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+
+            user3.setBackground(image);
+            user3.setTextColor(Color.BLACK);
+
+            user4.setBackground(image);
+            user4.setTextColor(Color.BLACK);
+
+            user5.setBackground(image);
+            user5.setTextColor(Color.BLACK);
+        }else if(numberOfPlayers == 6){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+
+            user3.setBackground(image);
+            user3.setTextColor(Color.BLACK);
+
+            user4.setBackground(image);
+            user4.setTextColor(Color.BLACK);
+
+            user5.setBackground(image);
+            user5.setTextColor(Color.BLACK);
+
+            user6.setBackground(image);
+            user6.setTextColor(Color.BLACK);}
+        else if(numberOfPlayers == 7){
+            user1.setBackground(image);
+            user1.setTextColor(Color.BLACK);
+
+            user2.setBackground(image);
+            user2.setTextColor(Color.BLACK);
+
+            user3.setBackground(image);
+            user3.setTextColor(Color.BLACK);
+
+            user4.setBackground(image);
+            user4.setTextColor(Color.BLACK);
+
+            user5.setBackground(image);
+            user5.setTextColor(Color.BLACK);
+
+            user6.setBackground(image);
+            user6.setTextColor(Color.BLACK);
+
+            user7.setBackground(image);
+            user7.setTextColor(Color.BLACK);}
+        else{
+
         user1.setBackground(image);
         user1.setTextColor(Color.BLACK);
 
@@ -201,7 +380,7 @@ public class GamezoneActivity extends AppCompatActivity {
         user7.setTextColor(Color.BLACK);
 
         user8.setBackground(image);
-        user8.setTextColor(Color.BLACK);
+        user8.setTextColor(Color.BLACK);}
     }
 
 }
