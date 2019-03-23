@@ -80,8 +80,8 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout3"
         app:layout_constraintVertical_bias="0.012" />
 
-    <CheckedTextView
-        android:id="@+id/user"
+    <TextView
+        android:id="@+id/theme"
         android:layout_width="296dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
@@ -97,65 +97,63 @@
         app:layout_constraintTop_toTopOf="@+id/checkedTextView"
         app:layout_constraintVertical_bias="0.004" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView7"
+    <TextView
+        android:id="@+id/leftCards"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="528dp"
         android:text="Осталось карт в колоде 49/50"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user"
+        app:layout_constraintTop_toBottomOf="@+id/theme"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/divider3"
         android:layout_width="350dp"
         android:layout_height="1dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="#e4e5e5"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/checkedTextView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkedTextView7"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView3"
+    <TextView
+        android:id="@+id/quest"
         android:layout_width="294dp"
         android:layout_height="94dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="Хи-хи-хи) Вам не повезло! Вам необходимо лизнуть ухо  участника «User» ! "
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/start2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintTop_toBottomOf="@+id/checkedTextView7"
+        app:layout_constraintVertical_bias="0.446" />
 
     <Button
         android:id="@+id/start2"
         android:layout_width="292dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/button"
         android:text="ДЕЛО СДЕЛАНО!"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkedTextView3"
-        app:layout_constraintVertical_bias="0.877" />
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

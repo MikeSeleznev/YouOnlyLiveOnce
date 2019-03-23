@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -30,13 +33,21 @@ public class GamezoneActivity extends AppCompatActivity {
     private Button user8;
     private int numberOfPlayers;
     private int selectedUser = 0;
+    SelectActivityFragment frg;
+    FragmentTransaction fTrans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        frg = new SelectActivityFragment();
         Intent intent = getIntent();
         final ArrayList<String> gamersArray = (ArrayList<String>) intent.getSerializableExtra("gamers");
         numberOfPlayers = gamersArray.size();
+
+
+        fTrans = getSupportFragmentManager().beginTransaction();
+        fTrans.add(R.id.frgmCont, frg);
+
         if (numberOfPlayers == 2){
             setContentView(R.layout.gamezone_two);
             user1 = findViewById(R.id.user1);
@@ -163,9 +174,15 @@ public class GamezoneActivity extends AppCompatActivity {
                             if (degree > 282 && degree <= 327){paintGamer(user8,7);}
                             if (degree > 327 ){paintGamer(user1,1);}
                         }
-                        Intent intent = new Intent(GamezoneActivity.this,SelectActivity.class);
+                        /*Intent intent = new Intent(GamezoneActivity.this,SelectActivity.class);
                         intent.putExtra("user", gamersArray.get(selectedUser - 1));
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        removeUsersButton();
+                        fTrans.commit();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("user", gamersArray.get(selectedUser - 1));
+                        frg.setArguments(bundle);
                         }
 
 
@@ -180,6 +197,41 @@ public class GamezoneActivity extends AppCompatActivity {
         });
 
     }
+
+    private void removeUsersButton(){
+        user1.setVisibility(View.INVISIBLE);
+        user2.setVisibility(View.INVISIBLE);
+        switch (numberOfPlayers){
+            case 3:
+                user3.setVisibility(View.INVISIBLE);
+            case 4:
+                user3.setVisibility(View.INVISIBLE);
+                user4.setVisibility(View.INVISIBLE);
+            case 5:
+                user3.setVisibility(View.INVISIBLE);
+                user4.setVisibility(View.INVISIBLE);
+                user5.setVisibility(View.INVISIBLE);
+            case 6:
+                user3.setVisibility(View.INVISIBLE);
+                user4.setVisibility(View.INVISIBLE);
+                user5.setVisibility(View.INVISIBLE);
+                user6.setVisibility(View.INVISIBLE);
+            case 7:
+                user3.setVisibility(View.INVISIBLE);
+                user4.setVisibility(View.INVISIBLE);
+                user5.setVisibility(View.INVISIBLE);
+                user6.setVisibility(View.INVISIBLE);
+                user7.setVisibility(View.INVISIBLE);
+            case 8:
+                user3.setVisibility(View.INVISIBLE);
+                user4.setVisibility(View.INVISIBLE);
+                user5.setVisibility(View.INVISIBLE);
+                user6.setVisibility(View.INVISIBLE);
+                user7.setVisibility(View.INVISIBLE);
+                user8.setVisibility(View.INVISIBLE);
+        }
+    }
+
 
     private void setVisibleGamers( ArrayList<String> gamersArray) {
 

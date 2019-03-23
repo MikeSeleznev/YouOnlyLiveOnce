@@ -2,6 +2,8 @@ package com.example.a222;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,13 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Button add2;
     EditText newUser;
     MyListAdapter myListAdapter;
+    String[] usuall;
+    SharedPreferences sPref;
 
     final ArrayList<String> gamersArray = new ArrayList<>();
 
@@ -34,6 +41,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
+
+        usuall = getResources().getStringArray(R.array.usuall);
+        List<String> listCards = new ArrayList<String>(Arrays.asList(usuall));
+        Cards usuallCards = new Cards("Обычные", listCards);
+
+        /*SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(usuallCards);
+        prefsEditor.putString("usuall", json);
+        prefsEditor.commit();*/
+
+        Gson gson = new Gson();
+        String json = gson.toJson(usuallCards);
+        sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString("usuall", json);
+        ed.commit();
 
         gamersListView = (ListView) findViewById(R.id.gamers);
         myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray);
