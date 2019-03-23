@@ -29,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
     ListView gamersListView;
     Button startGame;
-    Button add2;
+    Button addPlayer;
     EditText newUser;
     MyListAdapter myListAdapter;
     String[] usuall;
+    Players players;
     SharedPreferences sPref;
+    List<String> listCardsUsuall;
 
     final ArrayList<String> gamersArray = new ArrayList<>();
 
@@ -43,40 +45,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.menu_main);
 
         usuall = getResources().getStringArray(R.array.usuall);
-        List<String> listCards = new ArrayList<String>(Arrays.asList(usuall));
-        Cards usuallCards = new Cards("Обычные", listCards);
-
-        /*SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(usuallCards);
-        prefsEditor.putString("usuall", json);
-        prefsEditor.commit();*/
-
-        Gson gson = new Gson();
-        String json = gson.toJson(usuallCards);
-        sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString("usuall", json);
-        ed.commit();
+        listCardsUsuall = new ArrayList<String>(Arrays.asList(usuall));
 
         gamersListView = (ListView) findViewById(R.id.gamers);
         myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray);
         gamersListView.setAdapter(myListAdapter);
         newUser = (EditText) findViewById(R.id.newUser);
         startGame = (Button) findViewById(R.id.startGame);
+        startGame.setEnabled(false);
 
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                players = new Players(gamersArray);
+                Cards usuallCards = new Cards("Обычные", listCardsUsuall);
+
+                Gson gson = new Gson();
+                String json = gson.toJson(usuallCards);
+                sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor ed = sPref.edit();
+                ed.putString("usuall", json);
+                ed.commit();
+
+                Gson gson1= new Gson();
+                String json1 = gson1.toJson(players);
+                sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor ed1 = sPref.edit();
+                ed1.putString("Players", json1);
+                ed1.commit();
+
                 Intent intent = new Intent(MainActivity.this,GamezoneActivity.class);
                 intent.putExtra("gamers", gamersArray);
                 startActivity(intent);
             }
         });
 
-        add2 = (Button) findViewById(R.id.add2);
-        add2.setOnClickListener(new View.OnClickListener() {
+        addPlayer = (Button) findViewById(R.id.add2);
+        addPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String inputString = newUser.getText().toString();
@@ -133,11 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void setEnterItemVisible() {
         boolean check = true;
-        if (gamersArray.size() >= 8) {
+        boolean enab = true;
+        int checkSize = gamersArray.size();
+        if (checkSize == 8) {
             check = false;
         }
         newUser.setEnabled(check);
-        add2.setEnabled(check);
+        addPlayer.setEnabled(check);
+
+        if(checkSize < 2){
+            enab = false;
+        }
+        startGame.setEnabled(enab);
     }
 
     public class ViewHolder {

@@ -135,15 +135,14 @@
         android:text="Хи-хи-хи) Вам не повезло! Вам необходимо лизнуть ухо  участника «User» ! "
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/start2"
+        app:layout_constraintBottom_toTopOf="@+id/doneButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkedTextView7"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintTop_toBottomOf="@+id/leftCards" />
 
     <Button
-        android:id="@+id/start2"
+        android:id="@+id/doneButton"
         android:layout_width="292dp"
         android:layout_height="60dp"
         android:layout_marginBottom="40dp"

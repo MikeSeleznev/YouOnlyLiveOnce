@@ -2,6 +2,7 @@ package com.example.a222;
 
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Random;
 
 
 public class Cards {
@@ -13,6 +14,7 @@ public class Cards {
     public Cards(String name, List<String> quests){
         this.name = name;
         this.quests = quests;
+        this.leftCards = allcards;
     }
 
     public String getName(){
@@ -23,11 +25,30 @@ public class Cards {
         return quests.size();
     }
 
-    public String getQuestion(int num){
-        return quests.get(num);
+    public String getRandomQuestion(){
+        Random number = new Random();
+        int r1 = number.nextInt(leftCards);
+        return quests.get(r1);
     }
-    public void deleteQuest(int num){
-        quests.remove(num);
 
+    public void minusOneCard(){
+        leftCards = leftCards - 1;
+    }
+
+    public String leftCardsText(){
+        StringBuilder str = new StringBuilder();
+        str.append("Осталось карт в колоде ");
+        str.append(leftCards);
+        str.append("/50");
+
+        return str.toString();
+    }
+
+    public String leftCardsInt(){
+        StringBuilder str = new StringBuilder();
+        str.append(leftCards);
+        str.append("/50 карт");
+
+        return str.toString();
     }
 }

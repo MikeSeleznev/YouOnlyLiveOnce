@@ -31,16 +31,17 @@
 
     <ImageButton
         android:id="@+id/DeleteUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="22dp"
+        android:layout_height="19dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginRight="5dp"
+        android:background="@null"
         android:padding="0px"
-        android:scaleType="fitCenter"
-        android:src="@drawable/close"
+        android:scaleType="centerInside"
+        android:src="@drawable/deleteuser"
         tools:layout_editor_absoluteX="345dp"
         tools:layout_editor_absoluteY="243dp" />
 
