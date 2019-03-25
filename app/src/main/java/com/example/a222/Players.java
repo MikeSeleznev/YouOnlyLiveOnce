@@ -20,4 +20,8 @@ public class Players {
             }
         }*/
     }
+
+    public int numberOfPlayers (){
+        return this.names.size();
+    }
 }

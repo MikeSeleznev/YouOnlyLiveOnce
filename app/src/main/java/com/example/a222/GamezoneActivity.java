@@ -45,14 +45,15 @@ public class GamezoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Gson gson = new Gson();
-        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("Players", "");
-        final Players players = gson.fromJson(json, Players.class);
+        //String json = PreferenceManager.getDefaultSharedPreferences(this).getString("Players", "");
+        //final Players players = gson.fromJson(json, Players.class);
 
+        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
+        final Game game = gson.fromJson(json, Game.class);
 
-        Intent intent = getIntent();
-        final ArrayList<String> gamersArray = (ArrayList<String>) intent.getSerializableExtra("gamers");
-        //numberOfPlayers = gamersArray.size();
-        numberOfPlayers = players.names.size();
+        //numberOfPlayers = players.names.size();
+        numberOfPlayers = game.numberOfPlayers();
+        players = game.getPlayers();
 
         if (numberOfPlayers == 2){
             setContentView(R.layout.gamezone_two);

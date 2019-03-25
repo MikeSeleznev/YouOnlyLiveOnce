@@ -19,9 +19,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,15 +35,16 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sPref;
     List<String> listCardsUsuall;
 
+
     final ArrayList<String> gamersArray = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
 
-        usuall = getResources().getStringArray(R.array.usuall);
-        listCardsUsuall = new ArrayList<String>(Arrays.asList(usuall));
 
         gamersListView = (ListView) findViewById(R.id.gamers);
         myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray);
@@ -57,25 +56,19 @@ public class MainActivity extends AppCompatActivity {
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                players = new Players(gamersArray);
-                Cards usuallCards = new Cards("Обычные", listCardsUsuall);
+
+                PrepareCards prepareCards = new PrepareCards(MainActivity.this);
+                final Game game = new Game(gamersArray, prepareCards);
+                //game.savePreference(MainActivity.this);
 
                 Gson gson = new Gson();
-                String json = gson.toJson(usuallCards);
+                String json = gson.toJson(game);
                 sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 SharedPreferences.Editor ed = sPref.edit();
-                ed.putString("usuall", json);
+                ed.putString("game", json);
                 ed.commit();
 
-                Gson gson1= new Gson();
-                String json1 = gson1.toJson(players);
-                sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                SharedPreferences.Editor ed1 = sPref.edit();
-                ed1.putString("Players", json1);
-                ed1.commit();
-
                 Intent intent = new Intent(MainActivity.this,GamezoneActivity.class);
-                intent.putExtra("gamers", gamersArray);
                 startActivity(intent);
             }
         });

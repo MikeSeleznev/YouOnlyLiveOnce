@@ -41,7 +41,7 @@ public class TaskActivity extends AppCompatActivity {
         theme.setText(usuall.getName());
         question = usuall.getRandomQuestion();
         quest.setText(question);
-        usuall.quests.remove(question);
+        usuall.cards.remove(question);
 
 
         doneButton.setOnClickListener(new View.OnClickListener() {
