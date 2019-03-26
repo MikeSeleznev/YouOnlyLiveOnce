@@ -21,6 +21,8 @@ public class TaskActivity extends AppCompatActivity {
     Button doneButton;
     int max;
     String question;
+    Game game;
+    String pack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +33,19 @@ public class TaskActivity extends AppCompatActivity {
         leftCards = findViewById(R.id.leftCards);
         doneButton = findViewById(R.id.doneButton);
 
-        Gson gson = new Gson();
-        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("usuall", "");
-        final Cards usuall = gson.fromJson(json, Cards.class);
-        usuall.minusOneCard();
-        max = usuall.sizeCards();
+        Intent intent = getIntent();
+        pack = intent.getStringExtra("pack");
 
-        leftCards.setText(usuall.leftCardsText());
-        theme.setText(usuall.getName());
-        question = usuall.getRandomQuestion();
-        quest.setText(question);
-        usuall.cards.remove(question);
+        Gson gson = new Gson();
+        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
+        game = gson.fromJson(json, Game.class);
+        game.minusOneCard(pack);
+
+
+        leftCards.setText(game.leftCardsText(pack));
+        theme.setText(game.getNamePack(pack));
+        quest.setText(game.getRandomQuestion(pack));
+        //usuall.cards.remove(question);
 
 
         doneButton.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +53,10 @@ public class TaskActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Gson gson = new Gson();
-                String json = gson.toJson(usuall);
+                String json = gson.toJson(game);
                 sPref = PreferenceManager.getDefaultSharedPreferences(TaskActivity.this);
                 SharedPreferences.Editor ed = sPref.edit();
-                ed.putString("usuall", json);
+                ed.putString("game", json);
                 ed.commit();
 
                 Intent intent = new Intent(TaskActivity.this, GamezoneActivity.class);

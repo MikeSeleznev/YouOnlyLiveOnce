@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Cards extends Activity {
+public class Cards {
     private String name;
     private int leftCards;
     private int allcards = 50;
-    List<String> cards;
+    private List<String> cards;
 
     public Cards(String name, String[] cards){
         this.name = name;
@@ -55,5 +55,13 @@ public class Cards extends Activity {
         str.append("/50 карт");
 
         return str.toString();
+    }
+
+    public List<String> getCards(){
+        return cards;
+    }
+
+    public void setLeftCards(){
+        leftCards -= 1;
     }
 }

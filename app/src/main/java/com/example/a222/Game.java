@@ -1,45 +1,76 @@
 package com.example.a222;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.Map;
-
 
 public class Game {
-    SharedPreferences sPref;
-    ArrayList<Cards> cards = new ArrayList<>();
-    Players players;
+    Players[] players;
+    Cards[] cards;
+    Players selectedPlayer;
 
 
-    public Game(ArrayList<String> playersArray, PrepareCards prepareCards){
-        Players players = new Players(playersArray);
+    public Game(Players[] players, Cards[] cards){
+
         this.players = players;
-        for (Map.Entry<String, String[]> m: prepareCards.cards.entrySet()){
-            cards.add(new Cards(m.getKey(), m.getValue()));
-        }
-
+        this.cards = cards;
     }
 
-    public void savePreference(Context context){
-        Gson gson = new Gson();
-        String json = gson.toJson(this);
-        sPref = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString("game", json);
-        ed.commit();
-    }
 
     public int numberOfPlayers(){
-        return  this.players.numberOfPlayers();
+        return  this.players.length;
     }
 
-    public Players getPlayers(){
-        return this.players;
+    public void setSelectedPlayer(Players player){
+        this.selectedPlayer = player;
     }
+
+    public Players getSelectedPlayer(){
+        return selectedPlayer;
+    }
+
+    public void minusOneCard(String pack){
+        for (Cards c: cards) {
+            if (c.getName().equals(pack) == true){
+               c.getCards().remove(c.sizeCards()-1);
+               c.setLeftCards();
+            } else {
+                String a = "a";
+            }
+        }
+    }
+
+    public String leftCardsText(String pack){
+        String text = "";
+        for (Cards c: cards) {
+            if (c.getName().equals(pack) == true){
+                text = c.leftCardsText();
+            } else {
+                String a = "a";
+            }
+        }
+        return text;
+    }
+
+    public String getNamePack(String pack){
+        String text = "";
+        for (Cards c: cards) {
+            if (c.getName().equals(pack) == true){
+                text = c.getName();
+            } else {
+                String a = "a";
+            }
+        }
+        return text;
+    }
+
+   public String getRandomQuestion(String pack){
+       String text = "";
+       for (Cards c: cards) {
+           if (c.getName().equals(pack) == true){
+               text = c.getRandomQuestion();
+           } else {
+               String a = "a";
+           }
+       }
+       return text;
+   }
 }

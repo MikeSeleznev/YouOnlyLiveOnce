@@ -23,24 +23,25 @@ public class SelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_activity);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String selectedUser = (String) intent.getSerializableExtra("user");
 
         Gson gson = new Gson();
-        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("usuall", "");
-        Cards cards = gson.fromJson(json, Cards.class);
-
+        String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
+        Game game = gson.fromJson(json, Game.class);
 
         kolodanumcards = (CheckedTextView) findViewById(R.id.kolodanumcards);
-        kolodanumcards.setText(cards.leftCardsInt());
+        kolodanumcards.setText(game.cards[0].leftCardsInt());
+
         user = (TextView)findViewById(R.id.selectedUser);
-        user.setText(selectedUser);
+        user.setText(game.getSelectedPlayer().getFullName());
 
         usual = (ImageButton) findViewById(R.id.usual);
         usual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent taskIntent = new Intent(SelectActivity.this, TaskActivity.class);
+                taskIntent.putExtra("pack", Const.USUAL);
                 startActivity(taskIntent);
                 finish();
             }

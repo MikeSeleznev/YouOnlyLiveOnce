@@ -9,15 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class PrepareCards extends Activity {
-    Map<String, String[]> cards;
+    Cards mCardsUsual;
+
 
 
     public PrepareCards(Context context){
-        cards = new
-        cards.put(Const.USUAL, context.getResources().getStringArray(R.array.usuall));
+        mCardsUsual = new Cards(Const.USUAL, context.getResources().getStringArray(R.array.usuall));
+
     }
 
-    public Map<String, String[]> getCards(){
-        return this.cards;
-    }
 }

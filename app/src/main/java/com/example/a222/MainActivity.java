@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
     Button addPlayer;
     EditText newUser;
     MyListAdapter myListAdapter;
-    String[] usuall;
-    Players players;
+    Players[] players;
     SharedPreferences sPref;
-    List<String> listCardsUsuall;
+    Game game;
+    Cards[] cards;
+    ImageButton topMenu;
+    Boolean openFragment;
 
 
     final ArrayList<String> gamersArray = new ArrayList<>();
+
 
 
 
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
-
+        openFragment = false;
 
         gamersListView = (ListView) findViewById(R.id.gamers);
         myListAdapter = new MyListAdapter(this, R.layout.list_row, gamersArray);
@@ -52,14 +58,23 @@ public class MainActivity extends AppCompatActivity {
         newUser = (EditText) findViewById(R.id.newUser);
         startGame = (Button) findViewById(R.id.startGame);
         startGame.setEnabled(false);
+        topMenu = (ImageButton) findViewById(R.id.topmenu);
+
+
 
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                PrepareCards prepareCards = new PrepareCards(MainActivity.this);
-                final Game game = new Game(gamersArray, prepareCards);
-                //game.savePreference(MainActivity.this);
+                cards = new Cards[1];
+                cards[0] = new Cards(Const.USUAL, getResources().getStringArray(R.array.usuall));
+
+                players = new Players[gamersArray.size()];
+                for (int i = 0; i < gamersArray.size(); i++) {
+                    players[i] = new Players(gamersArray.get(i));
+                }
+
+                game = new Game(players, cards);
 
                 Gson gson = new Gson();
                 String json = gson.toJson(game);
@@ -85,6 +100,33 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 setEnterItemVisible();
+            }
+        });
+
+        topMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(MainActivity.this,TopMenuActivity.class);
+               // startActivity(intent);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentById(R.id.fragment);
+                if (openFragment == false){
+                    TopMenuActivity frag = new TopMenuActivity();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    //ft.replace(R.id.fragment, frag);
+                    ft.add(R.id.fragment, frag);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    openFragment = true;
+                } else {
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    manager.getBackStackEntryCount();
+                    transaction.remove(fragment);
+                    transaction.commit();
+                    openFragment = false;
+                }
+
             }
         });
     }

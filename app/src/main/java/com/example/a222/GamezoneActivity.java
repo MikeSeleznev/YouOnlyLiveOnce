@@ -2,6 +2,7 @@ package com.example.a222;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -38,6 +39,8 @@ public class GamezoneActivity extends AppCompatActivity {
     private int numberOfPlayers;
     private int selectedUser = 0;
     Players players;
+    Game game;
+    SharedPreferences sPref;
 
 
     @Override
@@ -49,11 +52,9 @@ public class GamezoneActivity extends AppCompatActivity {
         //final Players players = gson.fromJson(json, Players.class);
 
         String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
-        final Game game = gson.fromJson(json, Game.class);
+        game = gson.fromJson(json, Game.class);
 
-        //numberOfPlayers = players.names.size();
         numberOfPlayers = game.numberOfPlayers();
-        players = game.getPlayers();
 
         if (numberOfPlayers == 2){
             setContentView(R.layout.gamezone_two);
@@ -107,7 +108,7 @@ public class GamezoneActivity extends AppCompatActivity {
 
         bottle = findViewById(R.id.bottle);
 
-        setVisibleGamers(players);
+        setVisibleGamers(game.players);
         bottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,8 +187,18 @@ public class GamezoneActivity extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                game.setSelectedPlayer(game.players[selectedUser-1]);
+
+                                Gson gson = new Gson();
+                                String json = gson.toJson(game);
+                                sPref = PreferenceManager.getDefaultSharedPreferences(GamezoneActivity.this);
+                                SharedPreferences.Editor ed = sPref.edit();
+                                ed.putString("game", json);
+                                ed.commit();
+
                                 Intent intent = new Intent(GamezoneActivity.this,SelectActivity.class);
-                                intent.putExtra("user", players.names.get(selectedUser - 1));
+
+                                //intent.putExtra("user", players.names.get(selectedUser - 1));
                                 startActivity(intent);
                                 finish();
                             }
@@ -211,85 +222,37 @@ public class GamezoneActivity extends AppCompatActivity {
 
 
 
-    private void setVisibleGamers( Players players) {
+    private void setVisibleGamers(Players[] players) {
 
-        if (numberOfPlayers == 2) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-        } else if (numberOfPlayers == 3) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
+            user1.setText(players[0].getShortName());
+            user2.setText(players[1].getShortName());
+        if (numberOfPlayers == 3) {
+            user3.setText(players[2].getShortName());
         } else if (numberOfPlayers == 4) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
-            char[] name4 = players.names.get(3).toCharArray();
-            user4.setText(Character.toString(name4[0]));
+            user3.setText(players[2].getShortName());
+            user4.setText(players[3].getShortName());
         } else if (numberOfPlayers == 5) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
-            char[] name4 = players.names.get(3).toCharArray();
-            user4.setText(Character.toString(name4[0]));
-            char[] name5 = players.names.get(4).toCharArray();
-            user5.setText(Character.toString(name5[0]));
+            user3.setText(players[2].getShortName());
+            user4.setText(players[3].getShortName());
+            user5.setText(players[4].getShortName());
         } else if (numberOfPlayers == 6) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
-            char[] name4 = players.names.get(3).toCharArray();
-            user4.setText(Character.toString(name4[0]));
-            char[] name5 = players.names.get(4).toCharArray();
-            user5.setText(Character.toString(name5[0]));
-            char[] name6 = players.names.get(5).toCharArray();
-            user6.setText(Character.toString(name6[0]));
+            user3.setText(players[2].getShortName());
+            user4.setText(players[3].getShortName());
+            user5.setText(players[4].getShortName());
+            user6.setText(players[5].getShortName());
         } else if (numberOfPlayers == 7) {
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
-            char[] name4 = players.names.get(3).toCharArray();
-            user4.setText(Character.toString(name4[0]));
-            char[] name5 = players.names.get(4).toCharArray();
-            user5.setText(Character.toString(name5[0]));
-            char[] name6 = players.names.get(5).toCharArray();
-            user6.setText(Character.toString(name6[0]));
-            char[] name7 = players.names.get(6).toCharArray();
-            user7.setText(Character.toString(name7[0]));
-        } else{
-            char[] name1 = players.names.get(0).toCharArray();
-            user1.setText(Character.toString(name1[0]));
-            char[] name2 = players.names.get(1).toCharArray();
-            user2.setText(Character.toString(name2[0]));
-            char[] name3 = players.names.get(2).toCharArray();
-            user3.setText(Character.toString(name3[0]));
-            char[] name4 = players.names.get(3).toCharArray();
-            user4.setText(Character.toString(name4[0]));
-            char[] name5 = players.names.get(4).toCharArray();
-            user5.setText(Character.toString(name5[0]));
-            char[] name6 = players.names.get(5).toCharArray();
-            user6.setText(Character.toString(name6[0]));
-            char[] name7 = players.names.get(6).toCharArray();
-            user7.setText(Character.toString(name7[0]));
-            char[] name8 = players.names.get(7).toCharArray();
-            user8.setText(Character.toString(name8[0]));
+            user3.setText(players[2].getShortName());
+            user4.setText(players[3].getShortName());
+            user5.setText(players[4].getShortName());
+            user6.setText(players[5].getShortName());
+            user7.setText(players[6].getShortName());
+        } else if (numberOfPlayers == 8){
+            user3.setText(players[2].getShortName());
+            user4.setText(players[3].getShortName());
+            user5.setText(players[4].getShortName());
+            user6.setText(players[5].getShortName());
+            user7.setText(players[6].getShortName());
+            user8.setText(players[7].getShortName());
         }
     }
 
