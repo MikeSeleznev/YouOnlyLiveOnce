@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Cards[] cards;
     ImageButton topMenu;
     Boolean openFragment;
+    ImageButton closeMenuImageButton;
 
 
     final ArrayList<String> gamersArray = new ArrayList<>();
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         startGame = (Button) findViewById(R.id.startGame);
         startGame.setEnabled(false);
         topMenu = (ImageButton) findViewById(R.id.topmenu);
-
-
+        closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButton);
+        closeMenuImageButton.setVisibility(View.INVISIBLE);
 
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                     ft.addToBackStack(null);
                     ft.commit();
                     openFragment = true;
+                    topMenu.setVisibility(View.INVISIBLE);
+                    closeMenuImageButton.setVisibility(View.VISIBLE);
                 } else {
                     FragmentManager manager = getSupportFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
@@ -125,8 +128,28 @@ public class MainActivity extends AppCompatActivity {
                     transaction.remove(fragment);
                     transaction.commit();
                     openFragment = false;
+                    //topMenu.setPressed(false);
+                    //closeMenuImageButton.setVisibility(View.VISIBLE);
                 }
 
+            }
+        });
+
+        closeMenuImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (openFragment == true){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    Fragment fragment = fragmentManager.findFragmentById(R.id.fragment);
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    manager.getBackStackEntryCount();
+                    transaction.remove(fragment);
+                    transaction.commit();
+                    openFragment = false;
+                    topMenu.setVisibility(View.VISIBLE);
+                    closeMenuImageButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }

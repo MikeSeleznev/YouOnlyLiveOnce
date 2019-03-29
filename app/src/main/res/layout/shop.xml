@@ -4,31 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#17171c">
 
     <FrameLayout
-        android:id="@+id/backg"
-        android:layout_width="446dp"
-        android:layout_height="690dp"
-        android:background="#17171c"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="46dp">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="380dp"
-        android:layout_height="646dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/frameLayout7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/filedwhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="64dp">
+        app:layout_constraintTop_toBottomOf="@+id/tableRow1"
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
     <FrameLayout
-        android:layout_width="442dp"
-        android:layout_height="65dp"
+        android:id="@+id/frameLayout9"
+        android:layout_height="56dp"
+        android:layout_width="0dp"
         android:background="#fff"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="-22dp">
@@ -36,89 +36,101 @@
     </FrameLayout>
 
     <View
-        android:id="@+id/divider2"
-        android:layout_width="419dp"
-        android:layout_height="2dp"
-        android:background="#e4e5e5"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="44dp" />
-
-    <View
         android:id="@+id/divider3"
         android:layout_width="350dp"
         android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="#e4e5e5"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="139dp" />
+        app:layout_constraintTop_toBottomOf="@+id/user"
+        app:layout_constraintVertical_bias="0.028" />
 
     <CheckedTextView
         android:id="@+id/checkedTextView"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
+        android:layout_marginBottom="44dp"
         android:text="Игровой магазин"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.904" />
 
     <CheckedTextView
         android:id="@+id/checkedTextView3"
         android:layout_width="294dp"
         android:layout_height="17dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="Обратите внимание! "
         android:textAlignment="center"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="156dp" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.005" />
 
     <CheckedTextView
         android:id="@+id/checkedTextView13"
         android:layout_width="294dp"
         android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Вы можете купить 4 колоды, по цене 3!"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="173dp" />
+        app:layout_constraintTop_toBottomOf="@+id/checkedTextView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <CheckedTextView
         android:id="@+id/user"
         android:layout_width="296dp"
         android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="«We Only Live Once»"
         android:textAlignment="center"
         android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.042" />
 
     <TableRow
-        android:id="@+id/tableRow"
-        android:layout_width="380dp"
-        android:layout_height="45dp"
+        android:id="@+id/tableRow1"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:background="@color/colorPrimary"
+        android:gravity="top"
+        android:paddingBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="TODO"
@@ -136,55 +148,56 @@
             app:srcCompat="@drawable/menu" />
     </TableRow>
 
-    <TableLayout
-        android:layout_width="380dp"
-        android:layout_height="645dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="64dp">
-
-    </TableLayout>
-
     <ImageButton
         android:id="@+id/SPORT"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#000"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/sport"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="215dp" />
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.281" />
 
     <CheckedTextView
         android:id="@+id/kolodaname3"
         android:layout_width="134dp"
         android:layout_height="21dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="СПОРТ"
         android:textAlignment="center"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SPORT" />
+        app:layout_constraintTop_toBottomOf="@+id/SPORT"
+        app:layout_constraintVertical_bias="0.0" />
 
     <CheckedTextView
         android:id="@+id/kolodanumcards3"
         android:layout_width="134dp"
         android:layout_height="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Цена: 2$"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolodaname3" />
+        app:layout_constraintTop_toBottomOf="@+id/SPORT"
+        app:layout_constraintVertical_bias="0.062" />
 
     <ImageButton
         android:id="@+id/MUSIC"
@@ -192,12 +205,17 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#000"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/music"
-        tools:layout_editor_absoluteX="239dp"
-        tools:layout_editor_absoluteY="215dp" />
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.281" />
 
     <CheckedTextView
         android:id="@+id/kolodaname4"
@@ -217,14 +235,17 @@
         android:id="@+id/kolodanumcards4"
         android:layout_width="134dp"
         android:layout_height="14dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Цена: 2$"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/OHFUCK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolodaname4" />
+        app:layout_constraintTop_toBottomOf="@+id/kolodaname4"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/EROTIC"
@@ -232,12 +253,17 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#000"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/erotic"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="378dp" />
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout7"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.549" />
 
     <CheckedTextView
         android:id="@+id/kolodaname5"
@@ -257,14 +283,17 @@
         android:id="@+id/kolodanumcards5"
         android:layout_width="134dp"
         android:layout_height="14dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Цена: 2$"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/alldeck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolodaname5" />
+        app:layout_constraintTop_toBottomOf="@+id/kolodaname5"
+        app:layout_constraintVertical_bias="0.033" />
 
     <ImageButton
         android:id="@+id/OHFUCK"
@@ -272,12 +301,17 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#000"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/ohfuck"
-        tools:layout_editor_absoluteX="239dp"
-        tools:layout_editor_absoluteY="378dp" />
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout7"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.549" />
 
     <CheckedTextView
         android:id="@+id/kolodaname6"
@@ -297,14 +331,17 @@
         android:id="@+id/kolodanumcards6"
         android:layout_width="134dp"
         android:layout_height="14dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Цена: 2$"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/alldeck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolodaname6" />
+        app:layout_constraintTop_toBottomOf="@+id/kolodaname6"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/alldeck"
@@ -312,12 +349,16 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#000"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/alldecks"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="530dp" />
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
+        app:layout_constraintVertical_bias="0.814" />
 
     <CheckedTextView
         android:id="@+id/kolodaname7"
@@ -337,14 +378,17 @@
         android:id="@+id/kolodanumcards7"
         android:layout_width="134dp"
         android:layout_height="14dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="Цена: 6$"
         android:textAlignment="center"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kolodaname7" />
+        app:layout_constraintTop_toBottomOf="@+id/kolodaname7"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/Close"
@@ -352,10 +396,12 @@
         android:layout_height="15dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/close"
-        tools:layout_editor_absoluteX="366dp"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout9" />
 
 </android.support.constraint.ConstraintLayout>

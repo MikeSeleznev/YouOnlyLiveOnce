@@ -12,6 +12,7 @@ import android.widget.Button;
 
 public class TopMenuActivity extends Fragment {
     Button buttonRules;
+    Button buttonStore;
 
     @Nullable
     @Override
@@ -19,7 +20,7 @@ public class TopMenuActivity extends Fragment {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.topmenufragment, container, false);
         buttonRules = (Button) rootView.findViewById(R.id.buttonRules);
-
+        buttonStore = (Button)  rootView.findViewById(R.id.buttonStore);
         buttonRules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,6 +29,13 @@ public class TopMenuActivity extends Fragment {
             }
         });
 
+        buttonStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ShopActivity.class);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 }

@@ -7,30 +7,47 @@
     android:layout_height="match_parent">
 
 
+    <ImageButton
+        android:id="@+id/closeMenuImageButton"
+        android:layout_width="39dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close" />
+
     <CheckedTextView
         android:id="@+id/checkedTextView14"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="ДОБРО ПОЖАЛОВАТЬ В ИГРУ"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
 
     <CheckedTextView
         android:id="@+id/checkedTextView15"
-        android:layout_width="296dp"
+        android:layout_width="306dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="«We Only Live Once»"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkedTextView6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/add2"
@@ -38,7 +55,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#17171c"
@@ -142,8 +159,9 @@
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="380dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -152,7 +170,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="TODO"
@@ -163,11 +181,10 @@
             android:id="@+id/topmenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
+            android:layout_marginLeft="85dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/menu"
-            android:contentDescription="TODO"
-            app:srcCompat="@drawable/menu" />
+            android:contentDescription="TODO" />
     </TableRow>
 
     <FrameLayout

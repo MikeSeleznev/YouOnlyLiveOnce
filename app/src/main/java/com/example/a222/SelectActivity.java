@@ -2,6 +2,9 @@ package com.example.a222;
 
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,11 +21,17 @@ public class SelectActivity extends AppCompatActivity {
     TextView user;
     ImageButton usual;
     CheckedTextView kolodanumcards;
+    ImageButton closeMenuImageButton;
+    ImageButton topMenu;
+    Boolean openFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        openFragment = false;
         setContentView(R.layout.select_activity);
-
+        topMenu = (ImageButton) findViewById(R.id.topmenuSelectActivity);
+        closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButtonSelectActivity);
+        closeMenuImageButton.setVisibility(View.INVISIBLE);
         final Intent intent = getIntent();
         String selectedUser = (String) intent.getSerializableExtra("user");
 
@@ -46,5 +55,54 @@ public class SelectActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        topMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(MainActivity.this,TopMenuActivity.class);
+                // startActivity(intent);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentById(R.id.fragment);
+                if (openFragment == false){
+                    TopMenuActivity frag = new TopMenuActivity();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    //ft.replace(R.id.fragment, frag);
+                    ft.add(R.id.fragment, frag);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    openFragment = true;
+                    topMenu.setVisibility(View.INVISIBLE);
+                    closeMenuImageButton.setVisibility(View.VISIBLE);
+                } else {
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    manager.getBackStackEntryCount();
+                    transaction.remove(fragment);
+                    transaction.commit();
+                    openFragment = false;
+                    //topMenu.setPressed(false);
+                    //closeMenuImageButton.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+        closeMenuImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (openFragment == true){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    Fragment fragment = fragmentManager.findFragmentById(R.id.fragment);
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    manager.getBackStackEntryCount();
+                    transaction.remove(fragment);
+                    transaction.commit();
+                    openFragment = false;
+                    topMenu.setVisibility(View.VISIBLE);
+                    closeMenuImageButton.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
+
 }

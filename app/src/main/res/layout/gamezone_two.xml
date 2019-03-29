@@ -7,6 +7,8 @@
     tools:context=".GamezoneActivity">
 
 
+
+
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="0dp"
@@ -23,8 +25,9 @@
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="380dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,7 +36,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="TODO"
@@ -41,7 +44,7 @@
             app:srcCompat="@drawable/wolo" />
 
         <ImageButton
-            android:id="@+id/topmenu"
+            android:id="@+id/topmenu2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="90dp"
@@ -109,12 +112,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.525" />
 
+    <ImageButton
+        android:id="@+id/closeMenuImageButton2"
+        android:layout_width="39dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="@+id/tableRow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close" />
+
 
     <FrameLayout
-        android:id="@+id/frgmCont"
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        tools:layout_editor_absoluteX="0dp">
 
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

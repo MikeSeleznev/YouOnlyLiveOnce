@@ -8,7 +8,7 @@
     android:background="#17171c">
 
     <Button
-        android:id="@+id/start2"
+        android:id="@+id/buttonOK"
         android:layout_width="292dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
@@ -23,8 +23,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout5"
-        android:layout_width="390dp"
-        android:layout_height="670dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -37,15 +37,7 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout6"
-        android:layout_width="442dp"
-        android:layout_height="61dp"
-        android:background="#fff"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-22dp">
 
-    </FrameLayout>
 
     <View
         android:id="@+id/divider3"
@@ -77,6 +69,7 @@
         android:id="@+id/checkedTextView3"
         android:layout_width="294dp"
         android:layout_height="94dp"
+        android:layout_marginTop="364dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="Ты что, не знаешь как играть? Просто крути бутылку :)"
@@ -84,7 +77,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/start2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.649" />
@@ -105,8 +98,10 @@
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="380dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:layout_width="0dp"
+        android:background="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -115,7 +110,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="115dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="TODO"
@@ -131,10 +126,11 @@
             android:background="@drawable/menu"
             android:contentDescription="TODO"
             app:srcCompat="@drawable/menu" />
+
     </TableRow>
 
     <ImageButton
-        android:id="@+id/close"
+        android:id="@+id/buttonClose"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_alignParentTop="true"
