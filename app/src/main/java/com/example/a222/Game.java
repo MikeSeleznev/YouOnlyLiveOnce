@@ -3,15 +3,18 @@ package com.example.a222;
 
 
 public class Game {
-    Players[] players;
-    Cards[] cards;
-    Players selectedPlayer;
+     Players[] players;
+     Cards[] cards;
+    private Players selectedPlayer;
+    private Boolean startGame;
+
 
 
     public Game(Players[] players, Cards[] cards){
 
         this.players = players;
         this.cards = cards;
+        this.startGame = true;
     }
 
 
@@ -73,4 +76,32 @@ public class Game {
        }
        return text;
    }
+
+
+    public String getFirstPlayer(){
+        return this.selectedPlayer.getFullName();
+    }
+
+    public Boolean isStartGame(){
+        return this.startGame;
+    }
+
+    public String whoStartGame(){
+        StringBuilder str = new StringBuilder();
+        str.append("Игру начинает ");
+        str.append(getFirstPlayer());
+        return str.toString();
+    }
+
+    public void setNotStartGame(){
+        this.startGame = false;
+    }
+
+    public String whoContinueGame(){
+        StringBuilder str = new StringBuilder();
+        str.append("Теперь очередь игрока ");
+        str.append(getFirstPlayer());
+        return str.toString();
+    }
+
 }

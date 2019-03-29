@@ -11,6 +11,7 @@ public class Players {
     private String names;
 
 
+
     /*public Players(List<String> names){
         this.names = names;
         //TODO do short names
@@ -37,4 +38,6 @@ public class Players {
     public String getFullName(){
         return names;
     }
+
+
 }

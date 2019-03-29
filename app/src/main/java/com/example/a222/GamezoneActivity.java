@@ -18,6 +18,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -39,11 +40,13 @@ public class GamezoneActivity extends AppCompatActivity {
     private Button user8;
     private int numberOfPlayers;
     private int selectedUser = 0;
-    Game game;
-    SharedPreferences sPref;
-    ImageButton closeMenuImageButton;
-    ImageButton topMenu;
-    Boolean openFragment;
+    private Game game;
+    private SharedPreferences sPref;
+    private ImageButton closeMenuImageButton;
+    private ImageButton topMenu;
+    private Boolean openFragment;
+    private TextView startGamePlayer;
+    private String textQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +127,17 @@ public class GamezoneActivity extends AppCompatActivity {
             user8 = findViewById(R.id.user8);}
 
         bottle = findViewById(R.id.bottle);
+
+        startGamePlayer = (TextView) findViewById(R.id.startGamePlayer);
+        startGamePlayer.setVisibility(View.INVISIBLE);
+
+        if (game.isStartGame() == true) {
+            textQueue = game.whoStartGame(); }
+            else{
+            textQueue = game.whoContinueGame();
+            }
+        startGamePlayer.setText(textQueue);
+        startGamePlayer.setVisibility(View.VISIBLE);
 
 
 
@@ -224,7 +238,7 @@ public class GamezoneActivity extends AppCompatActivity {
                                 finish();
                             }
                         }, 500);
-
+                            game.setNotStartGame();
 
                         }
 

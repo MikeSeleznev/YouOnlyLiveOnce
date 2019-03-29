@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 game = new Game(players, cards);
+                game.setSelectedPlayer(players[0]);
 
                 Gson gson = new Gson();
                 String json = gson.toJson(game);
