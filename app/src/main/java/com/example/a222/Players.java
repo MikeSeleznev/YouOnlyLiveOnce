@@ -1,14 +1,12 @@
 package com.example.a222;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
 
 
 public class Players {
     private String names;
+    private float fromDegree;
+    private float toDegree;
+    private int number;
 
 
 
@@ -23,8 +21,10 @@ public class Players {
         }*/
 
 
-    public Players(String names){
-        this.names = names;}
+    public Players(String names, int num){
+        this.names = names;
+        this.number = num;
+    }
 
     public int numberOfPlayers (){
         return this.names.length();
@@ -39,5 +39,23 @@ public class Players {
         return names;
     }
 
+    public void setFromDegree(float d){
+        this.fromDegree = d;
+    }
 
+    public void setToDegree(float d){
+        this.toDegree = d;
+    }
+
+    public float getFromDegreeForPlayer(){
+        return fromDegree;
+    }
+
+    public float getToDegreeForPlayer(){
+        return toDegree;
+    }
+
+    public int getNumber(){
+        return number;
+    }
 }

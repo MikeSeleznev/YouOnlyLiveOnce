@@ -32,8 +32,6 @@ public class SelectActivity extends AppCompatActivity {
         topMenu = (ImageButton) findViewById(R.id.topmenuSelectActivity);
         closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButtonSelectActivity);
         closeMenuImageButton.setVisibility(View.INVISIBLE);
-        final Intent intent = getIntent();
-        String selectedUser = (String) intent.getSerializableExtra("user");
 
         Gson gson = new Gson();
         String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
@@ -43,7 +41,7 @@ public class SelectActivity extends AppCompatActivity {
         kolodanumcards.setText(game.cards[0].leftCardsInt());
 
         user = (TextView)findViewById(R.id.selectedUser);
-        user.setText(game.getSelectedPlayer().getFullName());
+        user.setText(game.getChoosedPlayer().getFullName());
 
         usual = (ImageButton) findViewById(R.id.usual);
         usual.setOnClickListener(new View.OnClickListener() {
