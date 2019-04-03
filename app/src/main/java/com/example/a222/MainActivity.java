@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
                 players = new Players[gamersArray.size()];
                 for (int i = 0; i < gamersArray.size(); i++) {
-                    players[i] = new Players(gamersArray.get(i));
+                    players[i] = new Players(gamersArray.get(i), i+1);
                 }
 
                 game = new Game(players, cards);
                 game.setSelectedPlayer(players[0]);
-
+                game.calculateAngle();
                 Gson gson = new Gson();
                 String json = gson.toJson(game);
                 sPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);

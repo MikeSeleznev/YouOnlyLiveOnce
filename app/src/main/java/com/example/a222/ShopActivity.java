@@ -7,13 +7,15 @@ import android.widget.ImageButton;
 
 public class ShopActivity extends AppCompatActivity {
     ImageButton close;
+    ImageButton closeMenuImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop);
-        close = (ImageButton)findViewById(R.id.Close);
-        close.setOnClickListener(new View.OnClickListener() {
+        
+        closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButtonShopActivity);
+        closeMenuImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

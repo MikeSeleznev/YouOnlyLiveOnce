@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="49dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/filedwhite"
@@ -99,21 +99,24 @@
 
     <ImageButton
         android:id="@+id/usual"
-        android:background="@null"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/obicnie"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkedTextView3"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <CheckedTextView
         android:id="@+id/kolodaname"
@@ -152,23 +155,24 @@
 
     <ImageButton
         android:id="@+id/extreme"
-        android:background="@null"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/extreme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/OBICHNAYA"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkedTextView3"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.082" />
 
 
     <CheckedTextView
@@ -183,7 +187,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.787"
+        app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/extreme"
         app:layout_constraintVertical_bias="0.005" />
@@ -197,21 +201,21 @@
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.787"
+        app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kolodaname2" />
 
     <ImageButton
         android:id="@+id/SPORT"
-        android:background="@null"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/sportclose"
@@ -232,7 +236,7 @@
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SPORT" />
 
@@ -247,7 +251,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kolodaname3"
         app:layout_constraintVertical_bias="0.0" />
@@ -255,30 +259,30 @@
 
     <ImageButton
         android:id="@+id/MUSIC"
-        android:background="@null"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/musicclose"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toEndOf="@+id/SPORT"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kolodanumcards2"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <CheckedTextView
         android:id="@+id/kolodaname4"
         android:layout_width="134dp"
         android:layout_height="21dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-medium"
         android:text="МУЗЫКА"
         android:textAlignment="center"
@@ -354,7 +358,6 @@
 
     <ImageButton
         android:id="@+id/OHFUCK"
-        android:background="@null"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
@@ -363,15 +366,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/ohfuckclose"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toEndOf="@+id/EROTIC"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kolodanumcards4"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.145" />
 
     <CheckedTextView
         android:id="@+id/kolodaname6"
@@ -479,7 +483,7 @@
         android:id="@+id/fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="46dp"
         android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

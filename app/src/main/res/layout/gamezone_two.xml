@@ -57,11 +57,12 @@
         android:text="U"
         android:textColor="#17171c"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottle" />
+        app:layout_constraintTop_toBottomOf="@+id/bottle"
+        app:layout_constraintVertical_bias="0.306" />
 
     <ImageView
         android:id="@+id/bottle"
