@@ -8,11 +8,14 @@ public class Game {
     Cards[] cards;
     private Players selectedPlayer;
     private Boolean startGame;
-    private int degree;
+    private float degree;
     private float last_dir = 0f;
     private float new_dir = 0f;
     private int numberOfPlayers;
     private Players choosedPlayer;
+    private Players previsiousPlayer;
+    private boolean repeatPlayer;
+    private float new_dirC;
 
 
     public Game(Players[] players, Cards[] cards) {
@@ -115,19 +118,21 @@ public class Game {
     public void calculateAngle() {
 
         float degreeForOnePlayer = 360 / numberOfPlayers;
-        float degree = 0f;
         for (int i = 0; i < numberOfPlayers; i++) {
             if (i == 0) {
                 players[i].setFromDegree(0 + degreeForOnePlayer / 2);
                 players[i].setToDegree(360 - degreeForOnePlayer / 2 + 0.1f);
+                players[i].setCenterDegree(360f);
             } else if (i == 1) {
                 players[i].setFromDegree(players[i - 1].getFromDegreeForPlayer() + 0.1f);
                 players[i].setToDegree(players[i - 1].getFromDegreeForPlayer() + degreeForOnePlayer);
+                players[i].setCenterDegree(degreeForOnePlayer / 2 * (i + 1));
             } else {
-
                 players[i].setFromDegree(players[i - 1].getToDegreeForPlayer() + 0.1f);
                 players[i].setToDegree(players[i - 1].getToDegreeForPlayer() + degreeForOnePlayer);
+                players[i].setCenterDegree(degreeForOnePlayer / 2 * (i + 1));
             }
+
         }
     }
 
@@ -139,7 +144,7 @@ public class Game {
 
     public void startOnePlay() {
         new_dir = getRandomAngle(last_dir);
-        float degree = new_dir % 360 + 18f;
+        degree = new_dir % 360 + 18f;
         for (int i = 0; i < numberOfPlayers; i++) {
             if (i == 0) {
                 if (degree <= players[i].getFromDegreeForPlayer() || degree > players[i].getToDegreeForPlayer()) {
@@ -153,6 +158,21 @@ public class Game {
 
                 }
             }
+        }
+        if ((previsiousPlayer == null)){
+            repeatPlayer = false;
+        }
+        else {
+            if (choosedPlayer.getFullName().equals(previsiousPlayer.getFullName()))
+            repeatPlayer = true;
+            else if(choosedPlayer.getNumber() == numberOfPlayers){
+                new_dir = new_dir + (players[0].getCenterDegree() - degree);
+            }
+            else{
+                new_dir = new_dir + (players[choosedPlayer.getNumber()].getCenterDegree() - degree);
+            }
+
+            //startOnePlay();
         }
 
     }
@@ -174,5 +194,21 @@ public class Game {
 
     public Players getChoosedPlayer(){
         return  choosedPlayer;
+    }
+
+    public void setPrevisiousPlayer(){
+        this.previsiousPlayer = choosedPlayer;
+    }
+
+    public boolean getRepeatPlayer(){
+        return repeatPlayer;
+    }
+
+    public void setRepeatPlayer(boolean b){
+       this.repeatPlayer = b;
+    }
+
+    public float getNew_dirC(){
+        return new_dirC;
     }
 }
