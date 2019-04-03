@@ -163,26 +163,31 @@ public class GamezoneActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                      int choosedP = game.getNumberChoosedPlayer();
-                      if (choosedP == 1){
-                          paintGamer(user1, 1);
-                      } else if (choosedP == 2){
-                          paintGamer(user2, 2);
-                      }else if (choosedP == 3){
-                          paintGamer(user3, 3);
-                      }else if (choosedP == 4){
-                          paintGamer(user4, 4);
-                      }else if (choosedP == 5){
-                          paintGamer(user5, 5);
-                      }else if (choosedP == 6){
-                          paintGamer(user6, 6);
-                      }else if (choosedP == 7){
-                          paintGamer(user7, 7);
-                      }else if (choosedP == 8){
-                          paintGamer(user8, 28);
-                      }
+                        /*if(game.getRepeatPlayer()){
+                            rotationplus();
+                        }
+                        else {*/
+                            int choosedP = game.getNumberChoosedPlayer();
+                            if (choosedP == 1) {
+                                paintGamer(user1, 1);
+                            } else if (choosedP == 2) {
+                                paintGamer(user2, 2);
+                            } else if (choosedP == 3) {
+                                paintGamer(user3, 3);
+                            } else if (choosedP == 4) {
+                                paintGamer(user4, 4);
+                            } else if (choosedP == 5) {
+                                paintGamer(user5, 5);
+                            } else if (choosedP == 6) {
+                                paintGamer(user6, 6);
+                            } else if (choosedP == 7) {
+                                paintGamer(user7, 7);
+                            } else if (choosedP == 8) {
+                                paintGamer(user8, 28);
+                            }
 
                         game.setLast_dir();
+                        game.setPrevisiousPlayer();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -206,6 +211,7 @@ public class GamezoneActivity extends AppCompatActivity {
                             game.setNotStartGame();
 
                         }
+                //}
 
 
                     @Override
@@ -424,4 +430,12 @@ public class GamezoneActivity extends AppCompatActivity {
         user8.setTextColor(Color.BLACK);}
     }
 
+    private void rotationplus(){
+        float pointWidth = bottle.getWidth() / 2;
+        float pointHeight = bottle.getHeight() / 2;
+        final Animation rotation = new RotateAnimation(game.getLast_dir(), game.getNew_dirC(), pointWidth, pointHeight);
+        rotation.setDuration(2700);
+        rotation.setFillAfter(true);
+        game.setRepeatPlayer(false);
+    }
 }

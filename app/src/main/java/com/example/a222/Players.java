@@ -7,6 +7,7 @@ public class Players {
     private float fromDegree;
     private float toDegree;
     private int number;
+    private float centerDegree;
 
 
 
@@ -57,5 +58,21 @@ public class Players {
 
     public int getNumber(){
         return number;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null){
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    public void setCenterDegree(float d){
+        this.centerDegree = d;
+    }
+
+    public float getCenterDegree(){
+        return centerDegree;
     }
 }
