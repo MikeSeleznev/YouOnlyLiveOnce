@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -48,6 +50,7 @@ public class GamezoneActivity extends AppCompatActivity {
     private TextView startGamePlayer;
     private String textQueue;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +130,7 @@ public class GamezoneActivity extends AppCompatActivity {
             user8 = findViewById(R.id.user8);}
 
         bottle = findViewById(R.id.bottle);
+        bottle.setRotation(game.getNew_dir());
 
         startGamePlayer = (TextView) findViewById(R.id.startGamePlayer);
         startGamePlayer.setVisibility(View.INVISIBLE);
@@ -188,6 +192,7 @@ public class GamezoneActivity extends AppCompatActivity {
 
                         game.setLast_dir();
                         game.setPrevisiousPlayer();
+
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -430,12 +435,17 @@ public class GamezoneActivity extends AppCompatActivity {
         user8.setTextColor(Color.BLACK);}
     }
 
-    private void rotationplus(){
-        float pointWidth = bottle.getWidth() / 2;
-        float pointHeight = bottle.getHeight() / 2;
-        final Animation rotation = new RotateAnimation(game.getLast_dir(), game.getNew_dirC(), pointWidth, pointHeight);
-        rotation.setDuration(2700);
-        rotation.setFillAfter(true);
-        game.setRepeatPlayer(false);
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+         super.onResume();
+
+        //    bottle.setRotation(game.getNew_dir());
+
     }
 }
+

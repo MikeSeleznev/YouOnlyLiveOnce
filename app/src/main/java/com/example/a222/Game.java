@@ -144,7 +144,7 @@ public class Game {
 
     public void startOnePlay() {
         new_dir = getRandomAngle(last_dir);
-        degree = new_dir % 360 + 18f;
+        degree = new_dir % 360;
         for (int i = 0; i < numberOfPlayers; i++) {
             if (i == 0) {
                 if (degree <= players[i].getFromDegreeForPlayer() || degree > players[i].getToDegreeForPlayer()) {
@@ -159,18 +159,26 @@ public class Game {
                 }
             }
         }
-        if ((previsiousPlayer == null)){
+        if ((previsiousPlayer == null)) {
             repeatPlayer = false;
-        }
-        else {
+        } else {
             if (choosedPlayer.getFullName().equals(previsiousPlayer.getFullName()))
-            repeatPlayer = true;
-            else if(choosedPlayer.getNumber() == numberOfPlayers){
+                repeatPlayer = true;
+                if (choosedPlayer.getNumber() == numberOfPlayers) {
                 new_dir = new_dir + (players[0].getCenterDegree() - degree);
-            }
-            else{
+                    if (choosedPlayer.getNumber() == numberOfPlayers ){
+                    choosedPlayer = players[0];
+                    } else{
+                        choosedPlayer = players[choosedPlayer.getNumber()];
+                    }
+                } else {
                 new_dir = new_dir + (players[choosedPlayer.getNumber()].getCenterDegree() - degree);
-            }
+                    if (choosedPlayer.getNumber() == numberOfPlayers ){
+                        choosedPlayer = players[0];
+                    } else{
+                        choosedPlayer = players[choosedPlayer.getNumber()];
+                    }
+                }
 
             //startOnePlay();
         }
