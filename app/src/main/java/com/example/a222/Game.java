@@ -15,7 +15,9 @@ public class Game {
     private Players choosedPlayer;
     private Players previsiousPlayer;
     private boolean repeatPlayer;
-    private float new_dirC;
+    Players player1;
+    Players player2;
+
 
 
     public Game(Players[] players, Cards[] cards) {
@@ -85,12 +87,14 @@ public class Game {
                 String a = "a";
             }
         }
-        return text;
+        String txt = text.replaceAll("Игрок 1", player1.getFullName());
+        String txt2 = txt.replaceAll("Игрок 2", player2.getFullName());
+        return txt2;
     }
 
 
-    public String getFirstPlayer() {
-        return this.choosedPlayer.getFullName();
+    public Players getFirstPlayer() {
+        return this.choosedPlayer;
     }
 
     public Boolean isStartGame() {
@@ -100,7 +104,8 @@ public class Game {
     public String whoStartGame() {
         StringBuilder str = new StringBuilder();
         str.append("Игру начинает ");
-        str.append(getFirstPlayer());
+        str.append(getFirstPlayer().getFullName());
+        setPlayer1(getFirstPlayer());
         return str.toString();
     }
 
@@ -111,9 +116,19 @@ public class Game {
     public String whoContinueGame() {
         StringBuilder str = new StringBuilder();
         str.append("Теперь очередь игрока ");
-        str.append(getFirstPlayer());
+        str.append(getFirstPlayer().getFullName());
+        setPlayer1(getFirstPlayer());
         return str.toString();
     }
+
+    public String whoRepeat() {
+        StringBuilder str = new StringBuilder();
+        str.append("Игрок ");
+        str.append(getFirstPlayer().getFullName());
+        str.append(" крутит бытылку еще раз ");
+        return str.toString();
+    }
+
 
     public void calculateAngle() {
 
@@ -143,6 +158,10 @@ public class Game {
     }
 
     public void startOnePlay() {
+        if (previsiousPlayer == null){
+            previsiousPlayer = getFirstPlayer();
+        }
+
         new_dir = getRandomAngle(last_dir);
         degree = new_dir % 360;
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -161,27 +180,31 @@ public class Game {
         }
         if ((previsiousPlayer == null)) {
             repeatPlayer = false;
-        } else {
+        }
+
+        else {
             if (choosedPlayer.getFullName().equals(previsiousPlayer.getFullName()))
                 repeatPlayer = true;
-                if (choosedPlayer.getNumber() == numberOfPlayers) {
-                new_dir = new_dir + (players[0].getCenterDegree() - degree);
+            else{repeatPlayer = false;}
+                /*if (choosedPlayer.getNumber() == numberOfPlayers) {
+                //new_dir = new_dir + (players[0].getCenterDegree() - degree);
                     if (choosedPlayer.getNumber() == numberOfPlayers ){
                     choosedPlayer = players[0];
                     } else{
                         choosedPlayer = players[choosedPlayer.getNumber()];
                     }
                 } else {
-                new_dir = new_dir + (players[choosedPlayer.getNumber()].getCenterDegree() - degree);
+               // new_dir = new_dir + (players[choosedPlayer.getNumber()].getCenterDegree() - degree);
                     if (choosedPlayer.getNumber() == numberOfPlayers ){
                         choosedPlayer = players[0];
                     } else{
                         choosedPlayer = players[choosedPlayer.getNumber()];
                     }
-                }
+                }*/
 
             //startOnePlay();
         }
+        setPlayer2(choosedPlayer);
 
     }
     public int getNumberChoosedPlayer(){
@@ -200,6 +223,10 @@ public class Game {
         last_dir=new_dir;
     }
 
+    public void setLast_dir(float f){
+        last_dir=f;
+    }
+
     public Players getChoosedPlayer(){
         return  choosedPlayer;
     }
@@ -216,7 +243,15 @@ public class Game {
        this.repeatPlayer = b;
     }
 
-    public float getNew_dirC(){
-        return new_dirC;
+    public float getDegree(){
+        return degree;
+    }
+
+    public void setPlayer1(Players player){
+        this.player1 = player;
+    }
+
+    public void setPlayer2(Players player){
+        this.player2 = player;
     }
 }

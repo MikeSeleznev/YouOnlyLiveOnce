@@ -30,8 +30,6 @@ import java.util.Random;
 public class GamezoneActivity extends AppCompatActivity {
 
     private ImageView bottle;
-    private float last_dir = 0f;
-    private int new_dir;
     private Button user1;
     private Button user2;
     private Button user3;
@@ -130,10 +128,12 @@ public class GamezoneActivity extends AppCompatActivity {
             user8 = findViewById(R.id.user8);}
 
         bottle = findViewById(R.id.bottle);
-        bottle.setRotation(game.getNew_dir());
+        //bottle.setRotation(game.getDegree());
 
         startGamePlayer = (TextView) findViewById(R.id.startGamePlayer);
         startGamePlayer.setVisibility(View.INVISIBLE);
+
+        game.setLast_dir(0f);
 
         if (game.isStartGame() == true) {
             textQueue = game.whoStartGame(); }
@@ -142,8 +142,6 @@ public class GamezoneActivity extends AppCompatActivity {
             }
         startGamePlayer.setText(textQueue);
         startGamePlayer.setVisibility(View.VISIBLE);
-
-
 
         closeMenuImageButton.setVisibility(View.INVISIBLE);
 
@@ -190,31 +188,37 @@ public class GamezoneActivity extends AppCompatActivity {
                                 paintGamer(user8, 28);
                             }
 
-                        game.setLast_dir();
+                        //game.setLast_dir();
                         game.setPrevisiousPlayer();
 
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                //game.setSelectedPlayer(game.players[selectedUser-1]);
+                            if (!game.getRepeatPlayer()==true) {
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //game.setSelectedPlayer(game.players[selectedUser-1]);
 
-                                Gson gson = new Gson();
-                                String json = gson.toJson(game);
-                                sPref = PreferenceManager.getDefaultSharedPreferences(GamezoneActivity.this);
-                                SharedPreferences.Editor ed = sPref.edit();
-                                ed.putString("game", json);
-                                ed.commit();
+                                        Gson gson = new Gson();
+                                        String json = gson.toJson(game);
+                                        sPref = PreferenceManager.getDefaultSharedPreferences(GamezoneActivity.this);
+                                        SharedPreferences.Editor ed = sPref.edit();
+                                        ed.putString("game", json);
+                                        ed.commit();
 
-                                Intent intent = new Intent(GamezoneActivity.this,SelectActivity.class);
+                                        Intent intent = new Intent(GamezoneActivity.this, SelectActivity.class);
 
-                                //intent.putExtra("user", game.getSelectedPlayer().getFullName());
-                                startActivity(intent);
-                                finish();
+                                        //intent.putExtra("user", game.getSelectedPlayer().getFullName());
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 500);
+                                game.setNotStartGame();
                             }
-                        }, 500);
-                            game.setNotStartGame();
-
+                            else{
+                                textQueue = game.whoRepeat();
+                                startGamePlayer.setText(textQueue);
+                                game.setLast_dir();
+                            }
                         }
                 //}
 
@@ -224,8 +228,9 @@ public class GamezoneActivity extends AppCompatActivity {
 
                     }
                 });
-                last_dir = new_dir;
+
                 bottle.startAnimation(rotation);
+                //last_dir = new_dir;
             }
         });
 
