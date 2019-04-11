@@ -39,9 +39,10 @@
 
     <View
         android:id="@+id/divider3"
-        android:layout_width="350dp"
         android:layout_height="1dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="#e4e5e5"
         android:visibility="visible"
@@ -120,13 +121,16 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/sport"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout7"
         app:layout_constraintVertical_bias="0.281" />
@@ -171,15 +175,18 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/music"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout7"
         app:layout_constraintVertical_bias="0.281" />
 
@@ -221,15 +228,18 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="84dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/erotic"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/frameLayout7"
         app:layout_constraintTop_toTopOf="@+id/frameLayout7"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <CheckedTextView
         android:id="@+id/kolodaname5"
@@ -267,17 +277,20 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/ohfuck"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout7"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout7"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <CheckedTextView
         android:id="@+id/kolodaname6"
@@ -317,14 +330,18 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
         android:padding="0px"
         android:scaleType="fitCenter"
         android:src="@drawable/alldecks"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout7"
-        app:layout_constraintVertical_bias="0.814" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.833" />
 
     <CheckedTextView
         android:id="@+id/kolodaname7"
