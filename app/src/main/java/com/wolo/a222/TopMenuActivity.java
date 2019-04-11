@@ -1,4 +1,4 @@
-package com.example.a222;
+package com.wolo.a222;
 
 import android.content.Intent;
 import android.os.Bundle;

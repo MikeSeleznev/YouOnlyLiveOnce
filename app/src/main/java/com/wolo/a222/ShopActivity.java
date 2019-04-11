@@ -1,4 +1,4 @@
-package com.example.a222;
+package com.wolo.a222;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

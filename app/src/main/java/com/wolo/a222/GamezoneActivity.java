@@ -1,4 +1,4 @@
-package com.example.a222;
+package com.wolo.a222;
 
 
 import android.content.Intent;
@@ -23,9 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class GamezoneActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a222">
+    package="com.wolo.a222">
 
     <application
         android:allowBackup="true"
@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name="com.wolo.a222.ShopActivity"></activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".InfoActivity"
+            android:name="com.wolo.a222.InfoActivity"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TaskActivity"
+        <activity android:name="com.wolo.a222.TaskActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".SelectActivity"
+        <activity android:name="com.wolo.a222.SelectActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".GamezoneActivity"
+        <activity android:name="com.wolo.a222.GamezoneActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+        <activity android:name="com.wolo.a222.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
