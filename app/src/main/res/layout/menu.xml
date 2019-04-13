@@ -132,11 +132,12 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="649dp" />
+        tools:layout_editor_absoluteY="649dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/NewUser"
-        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+
         android:layout_width="230dp"
         android:layout_height="38dp"
         android:background="@drawable/filed"
@@ -152,7 +153,8 @@
         android:typeface="sans"
         android:visibility="visible"
         tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="184dp" />
+        tools:layout_editor_absoluteY="184dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/add"
