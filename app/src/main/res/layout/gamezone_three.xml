@@ -86,7 +86,6 @@
         android:layout_height="185dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:rotation="18"
         android:scaleType="centerInside"
         android:src="@drawable/bottle"
         app:layout_constraintBottom_toBottomOf="parent"

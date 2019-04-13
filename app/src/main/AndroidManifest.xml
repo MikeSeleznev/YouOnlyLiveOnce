@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wolo.a222">
+    package="com.wolo.wolo">
 
     <application
         android:allowBackup="true"
@@ -9,19 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wolo.a222.ShopActivity"></activity>
+        <activity android:name="com.wolo.wolo.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.wolo.wolo.ShopActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:screenOrientation="portrait"
-            android:name="com.wolo.a222.InfoActivity"
+            android:name="com.wolo.wolo.InfoActivity"
             android:label="@string/title_activity_info"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.wolo.a222.TaskActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.wolo.a222.SelectActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.wolo.a222.GamezoneActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.wolo.a222.MainActivity"
+        <activity
+            android:name="com.wolo.wolo.TaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wolo.wolo.SelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wolo.wolo.GamezoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wolo.wolo.IntroActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

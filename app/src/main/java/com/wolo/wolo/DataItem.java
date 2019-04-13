@@ -1,4 +1,4 @@
-package com.wolo.a222;
+package com.wolo.wolo;
 
 public class DataItem {
     int image = R.drawable.close;

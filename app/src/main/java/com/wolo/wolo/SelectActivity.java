@@ -1,7 +1,6 @@
-package com.wolo.a222;
+package com.wolo.wolo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,66 +8,48 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-public class TaskActivity extends AppCompatActivity {
-    TextView theme;
-    TextView quest;
-    SharedPreferences sPref;
-    TextView leftCards;
-    Button doneButton;
-    Game game;
-    String pack;
+
+
+public class SelectActivity extends AppCompatActivity {
+
+    TextView user;
+    ImageButton usual;
+    CheckedTextView kolodanumcards;
     ImageButton closeMenuImageButton;
     ImageButton topMenu;
     Boolean openFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_activity);
         openFragment = false;
-        theme = findViewById(R.id.theme);
-        quest = findViewById(R.id.quest);
-        leftCards = findViewById(R.id.leftCards);
-        doneButton = findViewById(R.id.doneButton);
-
-        topMenu = (ImageButton) findViewById(R.id.topmenuTaskActivity);
-        closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButtonTaskActivity);
+        setContentView(R.layout.select_activity);
+        topMenu = (ImageButton) findViewById(R.id.topmenuSelectActivity);
+        closeMenuImageButton = (ImageButton) findViewById(R.id.closeMenuImageButtonSelectActivity);
         closeMenuImageButton.setVisibility(View.INVISIBLE);
-
-        Intent intent = getIntent();
-        pack = intent.getStringExtra("pack");
 
         Gson gson = new Gson();
         String json = PreferenceManager.getDefaultSharedPreferences(this).getString("game", "");
-        game = gson.fromJson(json, Game.class);
-        game.minusOneCard(pack);
+        Game game = gson.fromJson(json, Game.class);
 
+        kolodanumcards = (CheckedTextView) findViewById(R.id.kolodanumcards);
+        kolodanumcards.setText(game.cards[0].leftCardsInt());
 
-        leftCards.setText(game.leftCardsText(pack));
-        theme.setText(game.getNamePack(pack));
-        quest.setText(game.getRandomQuestion(pack));
-        //usuall.cards.remove(question);
+        user = (TextView)findViewById(R.id.selectedUser);
+        user.setText(game.getChoosedPlayer().getFullName());
 
-
-        doneButton.setOnClickListener(new View.OnClickListener() {
+        usual = (ImageButton) findViewById(R.id.usual);
+        usual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Gson gson = new Gson();
-                String json = gson.toJson(game);
-                sPref = PreferenceManager.getDefaultSharedPreferences(TaskActivity.this);
-                SharedPreferences.Editor ed = sPref.edit();
-                ed.putString("game", json);
-                ed.commit();
-
-                Intent intent = new Intent(TaskActivity.this, GamezoneActivity.class);
-                startActivity(intent);
+                Intent taskIntent = new Intent(SelectActivity.this, TaskActivity.class);
+                taskIntent.putExtra("pack", Const.USUAL);
+                startActivity(taskIntent);
                 finish();
             }
         });
@@ -121,4 +102,5 @@ public class TaskActivity extends AppCompatActivity {
             }
         });
     }
+
 }

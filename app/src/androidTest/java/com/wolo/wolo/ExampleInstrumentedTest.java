@@ -1,4 +1,4 @@
-package com.wolo.a222;
+package com.wolo.wolo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
